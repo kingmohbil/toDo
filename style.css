@@ -10,7 +10,7 @@
 }
 @font-face {
   font-family: roboto;
-  src: url('../Assets/Roboto-Regular.ttf');
+  src: url('./Assets/Roboto-Regular.ttf');
 }
 * {
   margin: 0;
@@ -307,7 +307,7 @@ label {
   align-items: center;
 }
 .remove-from-local-storage-btn{
-  background: url(../Assets/icons/checkbox.png);
+  background: url(./Assets/icons/checkbox.png);
   height: 36px;
   width: 36px;
   border: none;
