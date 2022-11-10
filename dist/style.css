@@ -54,7 +54,8 @@ body {
   font-weight: bold;
   border-bottom: 1px solid black;
 }
-.close-btn {
+.close-btn,
+.remove-from-dom-btn {
   border: none;
   background: none;
   font-size: 2rem;
@@ -62,14 +63,24 @@ body {
   cursor: pointer;
 }
 #overlay {
+  display: inline-block;
   transition: 200ms ease-in-out;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  pointer-events: none;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;  
+}
+#overlay.active{
+  pointer-events: all;
+  opacity: 1;
+}
+.form-container.active{
+  transform: translate(-50%, -50%) scale(1);
 }
 .to-do-form {
   display: grid;
@@ -118,6 +129,7 @@ label {
   align-self: start;
 }
 .description-input {
+  border-radius: 12px;
   background: var(--stone);
   width: 100%;
   height: 100%;
@@ -193,16 +205,20 @@ label {
   grid-auto-flow: column;
   column-gap: 20px;
   align-items: center;
-  cursor: pointer;
 }
-.controls > div:hover,
-.project > div:hover {
+.controls > button:hover, 
+.project > button:hover{
   border-bottom: 2px solid white;
 }
-.controls > div,
-.project > div {
+.controls > button, 
+.project > button{
+  border: none;
   border-bottom: 2px solid var(--red);
-  font-weight: 550;
+  font-weight: 100;
+  background: none;
+  color: white;
+  font-size: var(--normal-font-size);
+  cursor: pointer;
 }
 .side-ProjectsContainer {
   margin-top: 86px;
@@ -224,7 +240,7 @@ label {
 }
 .notification-side {
   display: grid;
-  grid-template-columns: 36px 48px 10em;
+  grid-template-columns: 10em 48px 10em;
   column-gap: 50px;
   align-items: center;
 }
@@ -232,7 +248,18 @@ label {
   font-size: var(--normal-font-size);
   font-weight: 700;
 }
-
+.add-btn{
+  all: unset;
+  color: white;
+  font-weight: bold;
+  background: var(--red);
+  font-size: 20px;
+  border-radius: 24px;
+  padding: 8px 12px;
+  border-color: var(--red);
+  cursor: pointer;
+  text-align: center;
+}
 .projects-container {
   grid-row: 1 / 3;
 }
@@ -262,17 +289,93 @@ label {
   gap: 24px;
   padding-bottom: 20px;
 }
-.card-content {
+.card-description {
   font-size: 20px;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.6);
 }
-/* these are the card buttons  */
-.card-btns {
-  display: grid;
-  grid-auto-flow: column;
-  column-gap: 32px;
-  padding-right: 24px;
-  justify-self: end;
+/* here is the card footer styling */
+.card-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+}
+.card-title-container{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+.remove-from-local-storage-btn{
+  background: url(../Assets/icons/checkbox.png);
+  height: 36px;
+  width: 36px;
+  border: none;
+  cursor: pointer;  
+}
+
+#inbox-btn.active, 
+#today-btn.active, 
+#upcoming-btn.active, 
+#New-Project.avtive{
+  border-bottom: 1px solid white;
+}
+.projectName{
+  background: rgba(0, 0, 0, 0.4);
+  border-style: none;
+  border-radius: 6px;
+  font-size:var(--normal-font-size);
+  border: none;
+  outline: none;
+  color: white;
+  padding:6px;
+  max-width: 80%;
+  transform: scale(0);
+  transition: 200ms ease-in-out;
+}
+.projectName.active{
+  transform: scale(1);
+}
+
+.project-form.active{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: scale(1);
+}
+
+.close-project-btn, 
+.delete-project{
+  font-size:1em;
+  background: none;
+  border: none;
   cursor: pointer;
+  transform: scale(0);
+  transition: 200ms ease-in-out;
+  color: white;
+}
+
+.close-project-btn.active, 
+.delete-project{
+  transform: scale(1);
+}
+
+.project-form{
+  height:0px;
+  width: 100%;
+}
+.project-form.active{
+  height: auto;
+}
+.new-project-container{
+  display: flex;
+  gap: 8px;
+  font-size: var(--normal-font-size);
+}
+.new-project{
+  font-size: var(--normal-font-size);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
 }
