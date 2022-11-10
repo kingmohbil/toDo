@@ -5,66 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/x-icon" href="../Assets/icons/to-do-list.png" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../Assets/icons/to-do-list.png"
+    />
+    <script src="main.js" defer></script>
     <title>To Do</title>
   </head>
   <body>
-    <div class="pageContainer">
-      <div id="overlay"></div>
-      <div class="form-container">
-        <div class="form-header">
-          <div class="form-header-content">Add New Task</div>
-          <button type="button" class="close-btn">&times;</button>
-        </div>
-        <div class="form-body-container">
-          <form action="index.html" method="get" class="to-do-form">
-            <div class="title-container">
-              <label for="title-input">* Title:</label
-              ><input
-                type="text"
-                id="title-input"
-                name="title-input"
-                class="title-input"
-                required
-                max="20"
-                autocomplete="off"
-              />
-            </div>
-            <div class="due-date-container">
-              <label for="due-date-input">* Due Date:</label
-              ><input
-                type="date"
-                name="due-date-input"
-                id="due=date-input"
-                class="due-date-input"
-                required
-              />
-            </div>
-            <div class="priority-container">
-              <input
-                type="checkbox"
-                name="checkbox-input"
-                id="checkbox-input"
-                class="checkbox-input"
-              />
-              <label for="checkbox-input">Urgent</label>
-            </div>
-            <div class="description-container">
-              <label for="description-input">Description:</label><br /><textarea
-                name="description-input"
-                id="description-input"
-                class="description-input"
-                maxlength="160"
-              ></textarea>
-            </div>
-            <div class="form-buttons-container">
-              <button type="submit" id="submit-btn" class="submit-btn">
-                Submit</button
-              ><button type="reset" class="reset-btn">Reset</button>
-            </div>
-          </form>
-        </div>
+    <div id="overlay"></div>
+    <div class="form-container">
+      <div class="form-header">
+        <div class="form-header-content">Add New Task</div>
+        <button type="button" class="close-btn" id="close-btn">&times;</button>
       </div>
+      <div class="form-body-container">
+        <form action="index.html" method="get" class="to-do-form">
+          <div class="title-container">
+            <label for="title-input">* Title:</label
+            ><input
+              type="text"
+              id="title-input"
+              name="titleInput"
+              class="title-input"
+              required
+              max="20"
+              autocomplete="off"
+            />
+          </div>
+          <div class="due-date-container">
+            <label for="due-date-input">* Due Date:</label
+            ><input
+              type="date"
+              name="dueDateInput"
+              id="due=date-input"
+              class="due-date-input"
+              required
+            />
+          </div>
+          <div class="priority-container">
+            <input
+              type="checkbox"
+              name="checkBoxInput"
+              id="checkbox-input"
+              class="checkbox-input"
+            />
+            <label for="checkbox-input">Urgent</label>
+          </div>
+          <div class="description-container">
+            <label for="description-input">Description:</label><br /><textarea
+              name="descriptionInput"
+              id="description-input"
+              class="description-input"
+              maxlength="160"
+            ></textarea>
+          </div>
+          <div class="form-buttons-container">
+            <button type="submit" id="submit-btn" class="submit-btn">
+              Submit</button
+            ><button type="reset" class="reset-btn">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="pageContainer">
       <div class="sideBar">
         <div class="dashBoared">
           <img src="../Assets/icons/toDo.png" alt="list icon" />
@@ -73,21 +78,21 @@
         <div class="controlsContainer">
           <div class="controls">
             <img src="../Assets/icons/inbox.png" alt="box picture" />
-            <div>Inbox</div>
+            <button id="inbox-btn" class="active">Inbox</button>
           </div>
           <div class="controls">
             <img
               src="../Assets/icons/calendar-clock.png"
               alt="calender picture"
             />
-            <div>Today</div>
+            <button id="today-btn">Today</button>
           </div>
           <div class="controls">
             <img
               src="../Assets/icons/calendar-month-outline.png"
               alt="calander picture"
             />
-            <div>Upcomming</div>
+            <button id="upcoming-btn">Upcoming</button>
           </div>
         </div>
         <div class="side-ProjectsContainer">
@@ -97,8 +102,12 @@
               alt="Settings Logo"
               style="max-width: 36px; max-height: 36px"
             />
-            <div>Projects</div>
+            <button id="New-Project">Projects</button>
           </div>
+          <form action="./index.html" method="get" class="project-form">
+            <input type="text" id="projectName" name="projectName" class="projectName" autocomplete="off"
+            maxlength="20"><span><button type="reset" class="close-project-btn">&times;</button></span>
+          </form>
         </div>
       </div>
       <div class="topBar">
@@ -107,7 +116,7 @@
           <input type="text" class="search-input" />
         </div>
         <div class="notification-side">
-          <img src="../Assets/icons/bell-ring-outline.png" alt="bell logo" />
+          <button class="add-btn" type="button" id="add-btn">New task</button>
           <a
             href="https://www.flaticon.com/free-icons/cute"
             target="_blank"
@@ -115,30 +124,15 @@
             ><img
               src="../Assets/icons/cool.png"
               alt="cool bird image"
-              style="height: 48px"
+              style="height: 48px;"
           /></a>
           <div>Just do it...!</div>
         </div>
       </div>
       <div class="content">
         <div class="projects-container">
-          Your List
+         <div class="loc">Inbox</div>
           <div class="cards-container">
-            <div class="cards">
-              <div class="card-content-container">
-                <div class="card-description">Super cool project</div>
-                <div class="card-content">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Dolores reprehenderit soluta adipisci ab praesentium voluptas
-                  eligendi.
-                </div>
-              </div>
-              <div class="card-btns">
-                <img src="../Assets/icons/star.png" alt="star logo" />
-                <img src="../Assets/icons/eye.png" alt="eye logo" />
-                <img src="../Assets/icons/share.png" alt="shre logo" />
-              </div>
-            </div>
           </div>
         </div>
       </div>
